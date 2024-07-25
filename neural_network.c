@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
+#include <stdbool.h>
 
 // Activation function (squish to 0-1)
 double sigmoid(double x){
@@ -18,7 +18,7 @@ double init_weights(){
 
 
 // https://benpfaff.org/writings/clc/shuffle.html
-void shuffle(int *array, size_t n){
+void shufflee(int *array, size_t n){
     if (n > 1) {
         size_t i;
 	for (i = 0; i < n - 1; i++) {
@@ -29,6 +29,24 @@ void shuffle(int *array, size_t n){
 	}
     }
 }
+void shuffle(int *array, int n){
+    for(int i = 0;i<n;i++){
+        bool check;
+        int num;
+        do{
+            check = true;
+            num = rand() % n;
+                for(int j = 0 ; j < i ; j++){
+                    if(array[j] == num){
+                        check = false;
+                        break;
+                    }
+                }
+        }while(!check);
+        array[i] = num;
+    }
+}
+
 
 
 #define input_num 2
@@ -39,6 +57,7 @@ void shuffle(int *array, size_t n){
 
 int main(){
     const double learning_rate = 0.1;
+    srand(time(NULL));
 
     // Training set
     double training__inputs[traninig_set_num][input_num] = {{0.0, 0.0},
@@ -77,6 +96,14 @@ int main(){
             output_layer_weights[i][j] = init_weights();
         }
     }
+    int array[traninig_set_num];
+    shuffle(array, traninig_set_num);
+
+    for(int i = 0;i<traninig_set_num;i++){
+        printf("\n%d",array[i]);
+    }    
+
+
 
 
     return 0;
