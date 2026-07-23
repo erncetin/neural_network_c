@@ -40,6 +40,20 @@ gcc neural_network.c -o neural_network -lm
 
 `-lm` flag'i `math.h` kütüphanesini linklemek için gerekli.
 
+## Örnek Çıktı
+
+Eğitim tamamlandıktan sonra test sonuçları:
+
+```
+Testing after training:
+Input: [0.000000, 0.000000] => Output: 0.023332
+Input: [0.000000, 1.000000] => Output: 0.979745
+Input: [1.000000, 1.000000] => Output: 0.021004
+Input: [1.000000, 0.000000] => Output: 0.979746
+```
+
+Sigmoid çıkışı 0 ile 1 arasında sürekli bir değer verir. 0.02 ≈ 0, 0.98 ≈ 1 olarak yorumlanabilir. Ağ XOR'u başarıyla öğrenmiş.
+
 ## Notlar
 
 - Aktivasyon fonksiyonu olarak sigmoid kullanılıyor.
