@@ -41,21 +41,12 @@ void shufflee(int *array, size_t n){
 	}
     }
 } */
-void shuffle(int *array, int n){
-    for(int i = 0;i<n;i++){
-        bool check;
-        int num;
-        do{
-            check = true;
-            num = rand() % n;
-                for(int j = 0 ; j < i ; j++){
-                    if(array[j] == num){
-                        check = false;
-                        break;
-                    }
-                }
-        }while(!check);
-        array[i] = num;
+void shuffle(int *array, int n) {
+    for (int i = n - 1; i > 0; i--) {
+        int j = rand() % (i + 1);
+        int t = array[j];
+        array[j] = array[i];
+        array[i] = t;
     }
 }
 
@@ -110,7 +101,7 @@ void matrix_multiplication(int R1, int C1, int C2,
 
 
 }
-// TODO
+
 void initialize_weights(int rows, int cols, double weight_array[rows][cols]){
     for(int i = 0; i < rows; i ++){
         for(int j = 0; j < cols; j++){
@@ -121,7 +112,7 @@ void initialize_weights(int rows, int cols, double weight_array[rows][cols]){
 }
 
 
-// TODO
+
 void forward_prop(double hidden_layer_bias[],
                 double output_layer_bias[],
                 double hidden_layer[][1], 
@@ -145,7 +136,6 @@ void forward_prop(double hidden_layer_bias[],
 
 }
 
-// TODO
 void backward_prop(double hidden_layer_bias[],
                 double output_layer_bias[],
                 double hidden_layer[][1], 
@@ -224,9 +214,9 @@ int main(){
 
     // Training set output
     double training_outputs[traninig_set_num][output_num] = {{0.0},
-                                                            {0.0},
                                                             {1.0},
-                                                            {0.0}}; 
+                                                            {0.0},
+                                                            {1.0}}; 
     // Order to shuffle
     int trainingset_order[] = {0,1,2,3};
 
@@ -254,21 +244,10 @@ int main(){
             printf("Output layer weight[%d][%d]: %f\n", i, j, output_layer_weights[i][j]);
         }
     }
-
-    //initialize weight arrays
-
-    for(int i = 0; i < input_num;i++){
-        for(int j = 0; j < hidden_layer_num ;j++){
-            hidden_layer_weights[i][j] = init_weights();
-        }
-    }
-
-    for(int i = 0; i < hidden_layer_num;i++){
-        for(int j = 0; j < output_num ;j++){
-            output_layer_weights[i][j] = init_weights();
-        }
-    }
     int array[traninig_set_num];
+    for(int i = 0; i < traninig_set_num; i++) {
+        array[i] = i;
+    }
     
     // TRAINING LOOP
     

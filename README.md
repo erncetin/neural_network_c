@@ -4,14 +4,14 @@ Sıfırdan, herhangi bir kütüphane kullanmadan C dilinde basit bir yapay sinir
 
 ## Ne Yapıyor?
 
-Ağ, 2 giriş nöronlu, 2 gizli katman nöronlu ve 1 çıkış nöronlu basit bir yapıya sahip. AND gate davranışını öğrenmek üzere eğitiliyor:
+Ağ, 2 giriş nöronlu, 2 gizli katman nöronlu ve 1 çıkış nöronlu basit bir yapıya sahip. XOR gate davranışını öğrenmek üzere eğitiliyor:
 
 | Giriş 1 | Giriş 2 | Beklenen Çıkış |
 |----------|----------|----------------|
 | 0        | 0        | 0              |
-| 0        | 1        | 0              |
-| 1        | 1        | 1              |
-| 1        | 0        | 0              |
+| 0        | 1        | 1              |
+| 1        | 1        | 0              |
+| 1        | 0        | 1              |
 
 Eğitim 10.000 epoch boyunca devam ediyor. Her epoch'ta training verileri shuffle edilerek ağa besleniyor. Eğitim sonunda ağ, test verilerini tahmin edip sonuçları ekrana basıyor.
 
